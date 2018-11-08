@@ -3,18 +3,21 @@
 <head>
     <meta charset="utf-8">
     <!--[if IE]>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<![endif]-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Choisir une doc</title>
     <link href="https://jenil.github.io/bulmaswatch/cyborg/bulmaswatch.min.css" rel="stylesheet">
 </head>
 
-<body onload="showAll();">
+<body onload="onLoad();">
 <div class="columns is-centered">
   <div class="column is-6">
     <nav id="panel" class="panel">
-      <p class="panel-heading"> Choose a doc !</p>
+      <p class="panel-heading">Choose a doc !</p>
+	    <p id="panel-tabs" class="panel-tabs">
+        <a onclick="showCategory()">Alls</a>
+      </p>
       <div id="elements"></div>
     </nav>
   </div>
@@ -24,7 +27,10 @@
 
 <script>
 
-  const elements = ["Spigot 1.13.2","Spigot 1.13",
+const elements = [
+  "Java 10",
+  "Java 8",
+  "Spigot 1.13.2","Spigot 1.13",
   "Spigot 1.12.2","Spigot 1.12",
   "Spigot 1.11.2",
   "Spigot 1.10.2",
@@ -36,14 +42,38 @@
   "Velocity ",
   "BungeeCord "]
 
-  const htmlElements = document.getElementById("elements");
+const htmlElements = document.getElementById("elements");
 
-function showAll(){
+function onLoad(){
+  let category = [];
   elements.forEach(element => {
-    let url = element.split(" ");
-    htmlElements.innerHTML += formatInnerHTML(element, url);
+    const infos = element.split(" ");
+    const categoryName = infos[0];
+    if(!category.includes(categoryName)){
+      category.push(categoryName);
+      console.log(categoryName);
+      document.getElementById("panel-tabs").innerHTML += `<a onclick="showCategory('${categoryName}')">${categoryName}</a>`;
+    }
   });
+  showCategory("");
+}
 
+function showCategory(category){
+  htmlElements.innerHTML = "";
+  if(!category){
+    elements.forEach(element => {
+      const url = element.split(" ");
+      htmlElements.innerHTML += formatInnerHTML(element, url);
+    });
+  }else{
+    elements.forEach(element => {
+      const url = element.split(" ");
+      const elementName = url[0];
+      if(url[0] === category){
+        htmlElements.innerHTML += formatInnerHTML(element, url);
+      }
+    });
+  }
 }
 
 function formatInnerHTML(element, url){
