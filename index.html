@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang=fr>
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choisir une doc</title>
+    <link href="https://jenil.github.io/bulmaswatch/cyborg/bulmaswatch.min.css" rel="stylesheet">
+</head>
+
+<body onload="showAll();">
+<div class="columns is-centered">
+  <div class="column is-6">
+    <nav id="panel" class="panel">
+      <p class="panel-heading"> Choose a doc !</p>
+      <div id="elements"></div>
+    </nav>
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+
+  const elements = ["Spigot 1.13.2","Spigot 1.13",
+  "Spigot 1.12.2","Spigot 1.12",
+  "Spigot 1.11.2",
+  "Spigot 1.10.2",
+  "Spigot 1.9.4",,
+  "Spigot 1.8.8",
+  "Spigot 1.7.10",
+  "Sponge ",
+  "Paper ",
+  "Velocity ",
+  "BungeeCord "]
+
+  const htmlElements = document.getElementById("elements");
+
+function showAll(){
+  elements.forEach(element => {
+    let url = element.split(" ");
+    htmlElements.innerHTML += formatInnerHTML(element, url);
+  });
+
+}
+
+function formatInnerHTML(element, url){
+  let href = url[0]+"/"+url[1];
+  return `<a class="panel-block" href="${href}">${element}</a>`
+}
+
+</script>

@@ -1,0 +1,10 @@
+net.md_5.bungee
+net.md_5.bungee.api
+net.md_5.bungee.api.config
+net.md_5.bungee.api.connection
+net.md_5.bungee.api.event
+net.md_5.bungee.api.plugin
+net.md_5.bungee.api.scheduler
+net.md_5.bungee.api.score
+net.md_5.bungee.command
+net.md_5.bungee.util
